@@ -10,7 +10,7 @@ export const Meals = ({ route }) => {
   );
 
   const renderMealItem = (itemData) => {
-    return <MealItem title={itemData.item.title} />;
+    return <MealItem item={itemData.item} />;
   };
 
   return (
@@ -20,6 +20,7 @@ export const Meals = ({ route }) => {
         data={displayedMeals}
         key={(item) => item.id}
         renderItem={renderMealItem}
+        numColumns={1}
       />
     </View>
   );
