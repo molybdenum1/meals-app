@@ -3,16 +3,27 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { CategoryGridTile } from "../components/CategoryGridTile";
 
-export const Categories = () => {
+export const Categories = ({ navigation }) => {
+  const renderListItem = (item) => {
+    const handlePress = () => {
+      navigation.navigate("NameOfMeals", { mealId: item.item.id });
+    };
+    return (
+    <CategoryGridTile
+      title={item.item.title}
+      color={item.item.color}
+      onPress={handlePress}
+    />
+  );}
+
   return (
     <View>
       <Text>Categories</Text>
       <FlatList
         data={CATEGORIES}
         keyExtractor={(item) => item.id}
-        renderItem={(item) => (
-          <CategoryGridTile title={item.title} color={item.color} />
-        )}
+        renderItem={renderListItem}
+        numColumns={2}
       />
     </View>
   );
