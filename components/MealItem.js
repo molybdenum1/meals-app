@@ -3,17 +3,17 @@ import {
   View,
   Text,
   StyleSheet,
-  Platform,
   Image,
   Pressable,
 } from "react-native";
 
-export const MealItem = ({ item }) => {
+export const MealItem = ({ item, handlePress }) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
         style={{flex: 1}}
         android_ripple={{color: '#ccc'}}
+        onPress={handlePress}
       >
         <Image
           source={{ uri: item.imageUrl }}
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     margin: 0,
-    borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   itemTextContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.5)",
