@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { CategoryGridTile } from "../components/CategoryGridTile";
 
@@ -18,7 +18,6 @@ export const Categories = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Categories</Text>
       <FlatList
         data={CATEGORIES}
         keyExtractor={(item) => item.id}
