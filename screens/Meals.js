@@ -20,8 +20,6 @@ export const Meals = ({ route, navigation }) => {
     const categoryTitle = CATEGORIES.find(
       (category) => category.id === catId
     ).title;
-    console.log(categoryTitle);
-    
 
     navigation.setOptions({
       title: categoryTitle,

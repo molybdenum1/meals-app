@@ -1,28 +1,29 @@
-import React, { useLayoutEffect, useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
-  FlatList,
   Image,
   ScrollView,
-  Button,
 } from "react-native";
+import { useNavigation } from '@react-navigation/native'
 import { MEALS } from "../data/dummy-data";
+import { IconButton } from "../components/IconButton";
 
-export const Meal = ({ route, navigation }) => {
+export const Meal = ({ route }) => {
   const { mealId } = route.params;
+  const nav = useNavigation();
   const MEAL = MEALS.filter((mealItem) => mealItem.id === mealId)[0];
 
-  const handlerPress = () => {};
+  const handlerPress = () => {
+    console.log('Pressed');
+  };
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerRigth: () => {
-        return <Button title="Tap me" onPress={handlerPress} />;
-      },
+  useLayoutEffect(() => {
+    nav.setOptions({
+      headerRight: () => <IconButton icon={'star'} color={'black'} onPress={handlerPress} />,
     });
-  }, [navigation, handlerPress]);
+  }, [nav]);
 
   return (
     <ScrollView style={styles.container}>
@@ -73,7 +74,7 @@ export const Meal = ({ route, navigation }) => {
         <View style={styles.stepsContainer}>
           {MEAL &&
             MEAL.steps.map((step) => (
-              <View style={styles.stepContainer}>
+              <View key={step} style={styles.stepContainer}>
                 <Text style={styles.stepTextContainer}>{`- ${step}`}</Text>
               </View>
             ))}
